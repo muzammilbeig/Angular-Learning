@@ -1,0 +1,37 @@
+Angular- Reload nhi krta bar bar
+
+Download node
+open any folder
+shift+right click 
+open powershell
+
+node --version
+npm --version
+
+angular cli.com
+npm install -g @angular/cli
+ng new bil-todo-list
+No
+Yes 
+CSS
+----
+Open VS code
+index.html
+in terminal
+ng serve
+open on localhost:4200
+---
+index - entry point
+
+  <app-root></app-root> yaha code rhta h
+
+app.component.html - isme hi kaam krenge
+
+app:
+	app-routing - bad me dekhenge (page change kr skte h bina reload kre)
+	app.component.css - isme css dalenge
+app.component.html:
+uda do sb
+
+div
+p lorem40
