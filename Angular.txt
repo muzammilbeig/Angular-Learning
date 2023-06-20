@@ -1,0 +1,1747 @@
+***********************
+Angular 10 and 11
+--
+
+Angular developed by Google
+First release 14sept 2016
+Current version 12 
+every 6 month, new version arrive
+----
+
+Angular 2 k bad har version almost same hota h
+open source framework h
+-
+
+Angular hav MVC(model-view-controller) based architecture
+
+MVC - soft design pattern , devide the program logic into
+	three interconnected elements
+-----
+
+2 tarike se use kr skte h angular ko
+
+Command line
+without command line
+
+we use NPM
+-----
+
+Node hona compulsory h
+NPM hona compulsory h
+
+node -v
+npm -v
+
+fir chahiye angular cli (command line interface)
+npm install -g @angular/cli
+
+for check
+ng version
+-----------
+Command line me
+
+ab new bnana h app then
+	ng new blog
+	y
+	y
+
+ab folder me pura code ajayga
+
+then 
+	ng serve
+build krega/show krega
+----------------
+
+package.json
+sbse phle yhi bnti h
+
+sari dependencies hoti h
+-
+
+node modules
+sari dependencies install hoti h
+-
+
+src folder - 95% kaam yhi hoga
+
+	environment
+		konsi command kb chlna chahiye
+
+	assets
+		wo files jo imp hoti h, but show nhi karana hoti
+
+	index.html:
+		entry point
+
+	main.js:
+		js ki phli file
+
+	style.css:
+		globally styling k lye
+
+	app:
+		root component
+		isme files hoti h component ki and modules hote h
+
+	modules:
+		ek module me 6-7 component aa skte h
+		components ka combination hoga module
+
+	Advance
+	  editorconfig:
+		charset kitna hona chahiye
+		kisko support krega, is typ ka
+		editor ki settings hoti h
+
+	  karma.config:
+		testing me kaam ati h
+
+	  package.lock.json:
+		package.json k logs rakhti h
+		detail verson of package.json
+
+	  tslint:
+		validation krti h, kaha per var use krna h
+		kah pr let use krna h
+
+	  typescript files:
+		tscofig is typ ki files hoti h
+		testing and more
+
+	  e2e folder:
+		for end to end testing k lye
+--------------------------------------------------------
+
+faltu code hata denge
+
+app pr jao
+	app.component.html pr jao
+	pura code uda do
+	
+	<h1>Hello </h1>
+	{{title}}
+
+	ye title dusri file se arha h
+	aap.component.ts se arha h
+----------
+
+Angular Interpolation
+
+kuch bhi data apn app.component.ts file se html file me le jana
+chahte h tb interpolation use hota h.
+
+app.component.ts me ajao
+	title wali line k bad
+	name="Bilal";
+
+ab app.component.html me ajao
+	<h1> {{name}} </h1>
+-
+
+jb bhi apn angular me kaam krte h
+or class me kuch bhi define krte h tb var/let likhne ki zrurt nhi h
+
+app.component.ts me jake dikha do
+	var name = "Bilal"
+	error ajayga
+
+jb hm function likhte h
+
+ function test1(){
+
+	}
+ese ni krna h
+
+test(){
+
+}
+ese krna h
+-
+
+Function example
+
+export class AppComponent{
+	name="Rishab"
+	getName(){
+		//return "Bil"
+		return this.name
+	}
+}
+-
+
+app.component.html me ajao
+	<h1>{{getName()}}
+
+---
+
+Object example & Array example
+
+app.component,ts
+class k andar
+
+	obj={
+		name:'one',
+		age:24
+	}
+	
+	arr = ['one','two','three']
+
+	a=20;
+	b=30;	
+---
+
+app.component.html
+	<h1> {{obj.name}}
+	<h1> {{arr[0]}}
+	//<h1> {{arr}}
+	<h1> {{arr.length}}
+	h1> {{10+10}}
+	h1> {{a+b}}
+	h1> {{a*b}}
+
+kuch chize nhi kr skte
+	//h1> {{a=10}}
+	h1> {{window.location.href}}
+error ayga
+---------------
+
+Component in Angular
+
+4 files in component
+component - peice of code
+
+	1 file html ki
+	1 file css ki
+	1 file spec for test cases
+	1 file ts ki, logical, api etc
+	  isi me comp ka name bhi ata h, url bhi
+	  mainly sb link krna hota h
+--
+
+new component creation
+terminal me ye likho
+ng g c userList
+g === generate
+c === component
+
+isse bn jayga,
+ab use krna h to
+
+app.component.html me ajao
+	h1 k bad
+	<app-user-list></app-user-list>
+
+ab show ho jayga
+--
+
+app.module.ts me bhi import ho gya hoga
+-----------------------------------------------------
+
+What is Module:
+
+Module->Component1 + Component2 + Comp3 + services + directives + pipes
+
+In anguar - a module is a mechanism to group components, directives,
+pipes and services that are related
+---
+
+ek module me dusra module import kr skte h
+
+command line se bnta h module
+ng g m users
+
+g --> generate
+m --> module
+
+ab ek folder me module bn jayga
+--
+
+ab components bhi bnana pdenge isme
+ng g c users/login
+
+isse comp bn jayga
+--
+
+ab users.module pr ajao
+	import k bad export bhi krna pdega
+
+	],
+	exports:[
+		LoginComponent
+	]
+-
+
+ab app.module me ajao
+import {UsersModule} from './users/users.module'
+
+ab import me likh do
+	,
+	UsersModule
+-
+
+agr show krana h to
+ app.component me jao
+	<app-login></app-login>
+-
+
+isi typ me jitna chaho bna skte ho comp or module
+----------------------------
+
+How to call a function in angular
+
+app.component.ts me ajao
+
+class k bad
+	yourName = "abc"
+	getName(name){
+		//alert("Bilal")
+		alert(name)
+	}
+-
+app.component === a.c.
+
+app.component.html me ajao
+	<button (click)="getName()"> Button </button>
+	<button (click)="getName('bruce')"> Button </button>
+	<button (click)="getName(yourName)"> Button </button>
+-
+
+but condition ye h k same component me hona chahiye
+-------------
+
+Imp Events in Angular:
+
+a.c.ts me ajao:
+
+class k bad
+	myEvent(evt){
+		log(evt);
+	}
+-
+
+a.c.html me ajao
+	<button (click)='myEvent("Click Event")'> Click me </button>
+	<br>
+	//<input type="text' (keyup)="myEvent('Key Up')"/>
+	//<input type="text' #box (keyup)="myEvent(box.value)"/>
+	//<input type="text' #box (keyup.enter)="myEvent(box.value)"/>
+	//<input type="text' #box (keyup.space)="myEvent(box.value)"/>
+	//<input type="text' #box (keydown)="myEvent(box.value)"/>
+	<input type="text' #box (blur)="myEvent('blue event')"/>
+
+keyup--> button press krne k bad jb chodte h tb value milti h
+keydown--> press krte se hi mil jaygi
+blur--> jb hm bahar click krenge tb print hoga
+-
+
+  <div (mouseover)="myEvent('mouse in')" style="background-color: blue;">
+	Mouse Events
+  </div>
+
+  <div (mouseleave)="myEvent('mouse in')" style="background-color: blue;">
+	Mouse Events
+  </div>
+-------------------------------
+
+
+Get text box value in Angular
+
+a.c.html
+	<input type="text' (keyup)="getVal($event.target.value)"/>
+
+	<h2> {{currentVal}}
+-
+
+agr button se value chahiye thn
+	<input type="text" #box/>
+	<button (click)="getVal(box.value)"> Get Value
+	<h2> {{currentVal}}
+	
+-
+
+a.c.ts
+	currentVal = ""
+	getVal(val){
+		log(val)
+		this.currentVal=val
+	}
+-
+
+---------------------------------
+
+Property Binding in Angular
+
+a.c.ts
+	after class
+		name="bruce"
+-
+
+a.c.html
+	<input type="text" value="hello" />
+	thir is normal
+-
+
+	<input type="text" [value]="name"/>
+	jo name dya h wo show ho jayga
+	<br>
+	
+	<input type="text" value={{name}}/>
+	dono same cize ho rhi h
+
+thn ye changes kro
+	<input type="text" [disabled]="disabledBox" [value]="name"/>
+	<br>	
+	ye wala enable ho jayga after fn write krne k bad
+	
+	<input type="text" disabled={{disabledBox}} value={{name}}/>
+	ye wale method se nhi hoga
+	
+	<button (click)="enableBox()"> Enable box
+--
+
+a.c.ts
+	after class
+	disableBox=true
+	enableBox(){
+		this.disabledBox=false
+	}
+---------------------------------------------
+Yaha tk ka likh dya h
+
+
+
+
+
+
+
+
+
+if - else in Angular:
+
+a.c.html
+	<h1 *ngIf="show else elseBlock">
+		if Block
+	</h1>
+
+	<ng-template #elseBlock>
+		h1 else block
+	</ng-template>	
+
+-
+
+a.c.ts
+	after class
+	show=true	
+	false krke bhi dikha do
+-----
+
+agr str me check krna ho to
+
+a.c.html
+	<h1 *ngIf="show=='yes' ; then ifBlock else elseBlock">
+	</h1>
+
+	<ng-template #ifBlock>
+		h1 if block
+	</ng-template>	
+
+	<ng-template #elseBlock>
+		h1 else block
+	</ng-template>	
+
+-
+
+a.c.ts
+	after class
+	show="yes"	
+	false krke bhi dikha do
+-----
+
+else if krna ho to
+	
+	<ng-template [ngIf]="show=='red'>
+		h1 Red Block
+	</ng-template>
+
+	<ng-template [ngIf]="show=='green'>
+		h1 Green Block
+	</ng-template>
+
+	<ng-template [ngIf]="show=='blue'>
+		h1 Blue Block
+	</ng-template>
+--
+
+a.c.ts
+	show="green"
+-------------------------------------
+
+Switch Case in Angular
+jab bht sari conditions hoti h tb use krte h
+
+a.c.ts
+	class k bad
+	color="red"
+
+a.c.html
+	<div [ngSwitch]="color">
+		<h2 *ngSwitchCase="'red'"> red Color </h2>
+		<h2 *ngSwitchCase="'green'"> green Color </h2>
+		<h2 *ngSwitchCase="'blue'"> blue Color </h2>
+		<h2 *ngSwitchCase="'brown'"> brown Color </h2>
+		<h2 *ngSwitchCase="'yellow'"> yellow Color </h2>
+
+	styling bhi de skte h
+
+	<h2 style="color:gold;" *ngSwitchCase="'red'"> gold Color </h2>
+	</div>
+
+-------------------------------------------
+
+For loop in Angular
+
+a.c.ts
+	data=['anil','bilal','sam'];
+-
+
+a.c.html
+	<h4 *ngFor="let item of data"> {{item}} </h4>
+	
+ye normal tha
+----
+
+a.c.ts
+	data=[
+		{
+			name:'anil',
+			age:28
+		},
+		{
+			name:'bil',
+			age:24
+		},
+		{
+			name:'sam',
+			age:23
+		}
+	]
+-
+
+a.c.html
+	<h4 *ngFor="let item of data"> {{item.name}} </h4>
+------
+
+agr table me data chahiye ho for loop se
+	<table border="1">
+	  <tr>
+		<td>Name </td>
+		<td>Age </td>
+	  </tr>
+	  <tr *ngFor="let item of data">
+		<td>{{item.name}} </td>
+		<td>{{item.age}} </td>
+	  </tr>
+	</table>
+--------------------------------------------------------------
+
+Simple Form in Angular
+
+app.module.js me ajao
+	import {FormsModule} from '@angular/forms'
+
+then
+	imports k andar
+	,
+	FormsModule
+----
+
+a.c.html
+    <form #simpleForm="ngForm" (ngSubmit)="getUserValue(simpleForm.value)">
+	<input type="text" ngModel name="username" placeholder="enter name"> 
+	<input type="text" ngModel name="age" placeholder="enter age"> 
+	<input type="text" ngModel name="address" placeholder="address">
+	<input type="password" ngModel name="password" placeholder="password"> 
+
+	<button>Get values </button>	
+     </form>
+--
+
+a.c.ts
+	class k bad
+	getUserValue(value){
+		log(value)
+	}
+-------------------------------------------
+
+Make Header Footer in Angular
+
+ng g c header
+ng g c footer
+
+a.c.html
+	<app-header></app-header>
+	h1 Hello
+	<app-footer></app-footer>
+
+ab footer.component.css me ajao
+	h5{
+		background-color: skyblue;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		margin: 0;
+		padding: 10px
+	}
+----------------------
+
+Style Binding in Angular
+
+a.c.html
+	<h1 style="color: red;"> Header 1 </h1>
+	ye normal h
+--
+
+ab binding dekho
+	<h1 [style.color]="'green'"> Header 2 </h1>
+	<h1 [style.backgroundColor]="'green'"> Header 2 </h1>
+--
+
+ab dynamic dekhte h:
+	<h1 [style.color]="color"> Dynamic 2 </h1>
+		
+a.c.ts
+	after class
+	color="orange"
+
+ye dynamic ho gya
+-------
+
+agr button se clr change krna ho to
+
+a.c.ts
+	after color
+
+	updateColor(){
+		this.color="blue";
+	}
+
+a.c.html
+	<button (click)="updateColor()"> Update Color
+------
+
+Conditional style
+
+a.c.ts
+	err=true;
+
+a.c.html
+	<h1 [style.color]="err?'red':'green'">Condional style
+--------------------------------------------------------------------
+
+Add bootstrap in angular 10
+
+in command line
+ng add @ng-bootstrap/ng-bootstrap
+
+then
+ng serve
+
+angular bootstrap.com
+ye bhi dikha skte ho
+
+code utha k dikha do
+
+a.c.html
+	paste krdo alert wala code
+--------------------------------------------------------
+
+Add material in Angular 10
+
+Material UI: 
+Responsiveness
+smooth feel ata h
+
+install krne k lye
+ng add @angular/material
+
+koi ek slect kro
+N
+Y
+----
+
+button ka example dekhte h
+
+app.module me ajao
+
+import {MatButtonModule} from '@angular/material/button'
+
+ab imports me bhi likh do
+	,
+	MatButtonModule
+	],
+-
+ab ajao
+
+a.c.html
+	<button mat-button> Angular</button>
+
+or dekhna ho to google krlo
+Material UI angular.com
+----
+
+slider ka example dekhte h
+
+app.module.ts
+import {MatSliderModule} from '@angular/material/slider'
+
+imports k bad
+	,
+	MatSliderModule
+	],
+-
+a.c.html
+	<mat-slider> </mat-slider>	
+	<mat-slider min="1" max="10"> </mat-slider>
+------------------------------------------------------------
+
+Pass data Parent to Child Comp in Angular:
+
+new comp bna lete h
+ng g c users
+
+new comp bn gya hoga
+	
+a.c.htme me ajao
+	h1 Parent Comp
+	<app-users> </app-users>	
+-
+
+ab users.component.html me ajao
+	h3 Child Component
+
+ab show ho rha hoga
+-
+
+a.c.ts me ajao
+	class k bad
+	
+	data="Bilal"
+-
+
+a.c.html me ajao
+	<app-users [hero]="data"> </app-users>
+-
+
+users.component.ts
+phle to import krlo input
+	OnInit, Input}
+
+fir class k andar
+	@Input() hero
+-
+
+users.comp.html
+	h4 {{hero}}	
+------------
+
+Agr object bhjna ho to
+
+a.c.ts
+class k bad
+
+	data={
+		name:'bil',
+		age:18
+	}
+-
+
+users.component.html
+	h4 {{hero.name}}
+	h4 {{hero.age}}
+--
+
+agr console.log karana ho to
+
+users.component.ts
+	ngOnInit() {
+		log(this.hero)
+	}
+-------------------------------------------------------
+
+Reusable Component
+
+jo phle bnaye the whi last wala comp use kr lenge
+
+a.c.ts me ajao
+	users=[
+		{
+			name:'one',
+			age:20,
+			address:'Bhopal'
+		},
+		{
+			name:'two',
+			age:22,
+			address:'Bhopal'
+		},
+		{
+			name:'three',
+			age:21,
+			address:'Bhopal'
+		}
+	]
+
+---
+
+a.c.html
+	<div *ngFor="let data of users">
+		<app-user [hero]="data"></app-user>
+	</div>
+--
+
+ab ache se show krana k lye
+
+user.component.html
+	<div class="box">
+		<p> {{hero.name}}
+		<p> {{hero.age}}
+		<p> {{hero.address}}
+	</div>
+-
+
+user.component.css
+	.box{
+		background-color: blue;
+	}
+----------------------------------------------
+
+Send data child to parent component in angular
+
+new comp bna lo
+ng g c user1
+
+a.c.ts
+class k bad
+	parentComponent(data){
+		log(data)
+	}
+
+a.c.html
+	<app-user1 (parentComponent)="parentComponent($event)"></app-user1>
+-
+
+ab ajao user1.comp.ts me
+import kro phle first line me
+	, Output,EventEmmitter }
+
+EventEmmitter== iski wjha se hi date jayga parent me
+
+class k bad
+	@Output() parentComponent:EventEmmitter<any> = new EventEmmitter()
+
+	onInite me
+		this.parentComponent.emit("hello")
+	agr object dena ho to
+		this.parentComponent.emit({name:'anil',age:30})
+-----
+
+agr button se send krna ho data to
+
+user1.comp.html
+  <button (click)="sendData()"> Send data to parent component</button>
+-
+
+user1.com.ts
+	class k bad
+
+	phle jo init me likha hua h wo hata dena
+
+	sendData(){
+		let item ={name:'anil',age:30}
+		this.parentComponent.emit(item)
+	}
+-----
+
+agr ye data html me show karana ho to
+	a.c.html
+		h3 {{data.name}}
+		h3 {{name}}
+-
+
+a.c.ts
+	class k bad
+	name="";
+	parentComponent(data){
+	this.name=data.name
+	}
+-------------------------------
+
+Pipe in Angular
+
+pipe--> jab bhi hme format change krna ho tb use krte h
+	string, data,currence, slice
+
+syntax ---> {{name | operation}}
+-
+
+a.c.ts
+class k bad
+	name="Bilal khalid"
+
+a.c.html
+	h2 {{name}}
+	h2 {{name | uppercase}}
+	h2 {{name | titlecase}}
+	h2 {{name | lowercase}}
+-
+
+a.c.ts
+class k bad
+	today=Data.now();
+	str="Hello Angular"
+	val=10
+--
+
+a.c.html
+	h2 {{today}}
+	h2 {{today | date}}
+	h2 {{today | date:'fullDate'}}
+
+	h2 {{str}}
+	h2 {{str | slice:1}}
+	h2 {{str | slice:1:2}}
+	
+	h2 {{val}}
+	h2 {{val | currency:'USD'}}
+	h2 {{val | currency:'CAD'}}
+---------------------------------------------
+
+Routing in Angular
+
+agr apne phle se project bna k rkha h usme install krna h to
+ng generate module app-routing --flat --module=app
+-
+
+apn new project bna k krenge
+new project bna lo
+	ng new routing-demo
+	Y
+	Y
+----
+
+open krlo ab vs code me
+
+agr check krna ho to
+app me jao
+	app-routing.module.ts
+	ye file hona chahiye
+
+--
+
+ab new comp bna lenge
+	ng  g c user
+	ng  g c admin
+
+app-routing.module.ts me ajao
+
+	import{UserComponent} from './user/user.component'
+
+	Routes = [
+		{
+			path:'user',
+			component:UserComponent
+		},
+		{
+			path:'admin',
+			component:UserComponent
+		}
+	]
+---
+
+ab ajao
+a.c.html
+	h1 Hello World
+	<a routerLink="user"> User
+	<a routerLink="admin"> Admin
+	
+	<router-outlet></router-outlet>
+
+------------------
+
+Routing with 404 page with wildcard routing
+
+new comp bna lo
+ng g c page-not-found
+
+ab app-routing.module.ts pr ajao
+  import{PageNotFoundComp} from './page-not-found/page-not-found.component'
+
+ab niche bhi import krlo
+	,
+	{
+		path:'**',
+		component:PageNotFoundComp
+	}	
+
+ab a.c.html pr ajao
+	<a routerLink="about">About</a>
+-----------------------------------------------------------------
+
+Custom Directive in Angular
+
+Directive-->DOM me manuplate krne k lye use hote h
+examples --> ngfor, ngif, switch case
+
+How to make custome directives
+ng g directive customStyle
+
+a.c.html
+	h2 Normal Heading
+	h2 Custom Heading
+-
+
+custom-style.directive.ts me ajao
+import krlo
+	,ElementRef}
+
+	selector copy krlo
+
+	constructor(private el:ElementRef){
+		//el.nativeElement.style.color="green"
+		el.nativeElement.style.display="none"
+	}
+-	
+
+a.c.html
+	yaha paste krdo
+	<h2 appCustomStyle> Custom Heading </h2>
+-------------------------------------------------------
+
+Services in Angular
+
+services--> 2-3 component me data ko share krna
+
+ek service ko kahi bhi use kr skte h
+
+new service bna lo
+ng g service userData
+
+users-data.service.ts
+	constructor k bad
+	
+	getData(){
+		return{
+			name:'bilal',
+			age:20,
+			id:10
+		}
+	}
+-
+
+a.c.ts
+ 	import{UserDataSerices} from './users-data.services'
+
+
+	name="";
+	constructor(private user:UserDataServices){
+		log(this.user.getData())
+		let data=this.user.getData();
+		this.name=data.name
+	}
+--
+
+a.c.html
+	h3 {{name}}
+------------
+
+API call in angular with services
+
+ng g service userService
+ye terminal pr krna h
+
+ab ajao
+user-service.service.ts
+	import{HttpClient} from '@angular/common/http'
+	
+	constructor(private http:HttpClient){}
+
+	getData(){
+		let url="https://jsonplaceholder.typicode.com/todos/"
+		return this.http.get(url);
+	}
+-
+ab http import krna pdega
+
+app.module.ts
+	import{HttpClientModule} from '@angular/common/http'
+
+	imports me
+	,
+	HttpClientModule
+	],
+-
+
+a.c.ts
+	import{UserServiceService} from './user-service.service'
+
+class k bad
+	constructor(private user:UserServiceService){
+		this.user.getData().subscribe(data=>{
+			log(data)
+		})
+	}
+----------------
+
+Show List from API Data in Angular
+
+a.c.ts
+	class k bad
+	data=[]
+
+	log k bad
+	this.data=data
+-
+
+a.c.html
+	<table border="1">
+	  <tr>
+		<td>Id
+		<td>Title
+		<td>User ID
+	  </tr>
+	  <tr *ngFor="let item of data">
+		<td>{{item.id}}
+		<td>{{item.title}}
+		<td>{{item.userId}}
+	  </tr>
+	</table>
+------------------------------------------------------------------
+
+Model:
+Data Structure define krta h
+Model typeScript ka part h
+
+a.c.ts
+
+interface dataType{
+	name:string,
+	id:number,
+	indian:boolean,
+	address:any
+}
+
+class k bad
+	getData(){
+		const data:dataType={
+		   name:"Bilal",
+		   id:100,
+		   indian:true,
+		   address:'12 abc'
+		}
+	return data;
+	}
+
+check krega name string hi h ya nhi?
+Is typ k check krne k lye use krte h
+------------------------
+
+Agar yhi use krna h service me
+
+terminal me
+	ng g service users
+
+users.services.ts
+	interface dataType{
+		name:string,
+		id:number,
+		indian:boolean,
+		address:any
+	}
+
+thn constructor k bad
+	getData(){
+		const data:dataType={
+		   name:"Bilal",
+		   id:100,
+		   indian:true,
+		   address:'12 abc'
+		}
+	return data;
+	}
+---
+
+ab ye interface bar2 likhne se acha h,
+ek bar likh k export krdo
+
+new file bna lo app folder k andar
+user.ts
+	
+	export interface dataType{
+		name:string,
+		id:number,
+		indian:boolean,
+		address:any
+	}
+-
+
+users.service.ts
+import {dataType} from './user'
+
+	interface wala pura code hata skte h ab
+----------------------------------------------------------
+
+Recap Routing or Module in Angular
+
+module bna lo
+
+	ng g m users
+
+ab comp bna lo
+	ng g c users/login
+
+ab ek or comp bna lo
+	ng g c users/signup
+
+ab show krna ho to
+
+users.module.ts
+	import{LoginComponent} from './login/login.component';
+	import{SignupComponent} from './login/signup.component';
+
+	imports k bad
+	],
+	exports:[
+	LoginComponent,
+	SignupComponent
+	]
+-
+
+app.module.ts
+	import{UserModule} from './users/users.module'
+
+	imports me
+	UserModule
+-
+a.c.html
+	<app-login></app-login>
+	<app-signup></app-signup>
+-----
+
+ab isi me routing define krna h to
+
+app-routing.module.ts
+   	import{LoginComponent} from './users/login/login.component'
+   	import{SignupComponent} from './users/signup/signup.component'
+
+	Routes k bad
+	= [
+	   { path:'login',component:LoginComponent},
+	   { path:'login',component:LoginComponent}
+	];
+-
+
+a.c.html
+	<ul>
+		<li><a routerLink="login">Login</a></li>
+		<li><a routerLink="signup">Login</a></li>
+	</ul>
+
+	<router-outlet></router-outlet>
+-------------
+
+Routing Module in Angular
+
+new module bna lo
+	ng g m admin --routing
+
+new comp bhi bna lo
+	ng g c admin/login
+	ng g c admin/list
+-
+
+admin-routing.module.ts
+	import{LoginComponent} from './login/login.component';
+	import{ListComponent} from './list/list.component';
+
+	Routes k bad
+	=[
+		{path:'login', component:LoginComponent},
+		{path:'list', component:ListComponent},
+	];
+-
+
+app.module.ts
+	import {AdminModule} from './admin/admin.module'
+
+	imports k bad
+		AdminModule
+-
+
+a.c.html
+	<ul>
+		<li><a routerLink="login">Login</a></li>
+		<li><a routerLink="list">List</a></li>
+	</ul>
+
+	<router-outlet></router-outlet>
+---------------
+
+Group Routing
+Taki pta chale k konsa module me h hm url se
+
+ab ek module bna lo
+	ng g m user --routing
+
+ab comp bna lo
+	ng g c user/list
+	ng g c user/login
+-
+
+user.routing.module.ts
+	import{ListComponent} from './list/list.component';
+	import{LoginComponent} from './login/login.component';
+
+	Routes k bad
+	=[
+		{path:'/login', component:LoginComponent},
+		{path:'/list', component:ListComponent},
+	];
+-
+
+app.module.ts
+	import{UserModule} from './user/user.module'
+
+	imporst k bad
+	,
+	UserModule
+-
+
+a.c.html
+	h3 Admin Page
+	<ul>
+		<li><a routerLink="admin/login">Login</a></li>
+		<li><a routerLink="admin/list">List</a></li>
+	</ul>
+
+	h3 AUser Page
+	<ul>
+		<li><a routerLink="user/login">Login</a></li>
+		<li><a routerLink="user/list">List</a></li>
+	</ul>
+
+	<router-outlet></router-outlet>
+-
+
+admin-routing.module.ts
+	const routes: Routes = [
+		{ path:'admin',children:[
+			{path:'list', component:ListComponent},
+			{path:'login', component:LoginComponent},
+		]
+		}
+	];
+-
+
+user-routing.module.ts
+	const routes: Routes = [
+		{ path:'user',children:[
+			{path:'list', component:ListComponent},
+			{path:'login', component:LoginComponent},
+		]
+		}
+	];
+----------------------------------------------------------------------
+
+Lazy Loading in Angular
+Jispr click krenge bs wo load hoga module/route
+
+new module bna lo
+	ng g m admin --routing
+
+comp bna lo
+	ng g c admin/login
+	ng g c admin/list
+-
+
+admin-routing.module.ts
+	import {LoginComponent} from './login/login.component'
+	import {ListComponent} from './list/list.component'
+
+	Routes me
+	[
+		{path:'list', component:ListComponent},
+		{path:'login', component:LoginComponent},
+	];
+-
+
+app.routing.module.ts
+	Routes = [
+	  {
+	path:'admin', loadChildren:()=>import('./admin/admin.module')
+	.then(mod=>mod.AdminModule)
+	  }
+	]
+-
+
+a.c.html
+
+	<ul>
+		<li><a routerLink="admin/login">Login</a></li>
+		<li><a routerLink="admin/list">List</a></li>
+	</ul>
+
+	<router-outlet></router-outlet>
+-
+
+ab check krna ho to
+
+admin.module.ts
+	sare import k bad
+	log("Admin Module")
+-
+
+isi trha h apn bht sare module me bhi kr skte h.
+----------------------------------------
+
+Lazy Loading Component in Angular
+
+ap chahte ho k sb component load na ho
+
+component bna lo
+	ng g c userlist
+	ng g c adminlist
+-
+
+ViewContainerRef		--->ye container bnata h div jesa 
+					jisme dynamic content load hoga
+
+ComponentFactoryResolver	--->jo dynamic code ayga usko component
+					me convert krega
+--
+
+a.c.ts
+
+import { Component, ViewContainerRef,ComponentFactoryResolver}
+
+class k bad
+	constructor(private viewContainer:ViewContainerRef,
+		private cfr:ComponentFactoryResolver){}
+	
+	async loadAdmin(){
+	   this.viewContainer.clear();	#ye phle clear krega div ko
+	   const{AdminlistComponent}=await import('./adminlist/adminlist.component');
+	   this.viewContainer.createComponent(
+		this.cfr.resolveComponentFactory(AdminlistComponent)
+	   )
+	}
+
+	async loadUser(){
+	   this.viewContainer.clear();	#ye phle clear krega div ko
+	   const{UserlistComponent}=await import('./userlist/userlist.component');
+	   this.viewContainer.createComponent(
+		this.cfr.resolveComponentFactory(UserlistComponent)
+	   )
+	}
+
+-
+
+a.c.html
+	<button (click)="loadAdmin()">Load Admin List
+	<button (click)="loadUser()">Load User List
+--------------------------------------------------------------------
+
+Angular Forms
+Jo bhi hm input me lete h user se
+
+form use
+	login/create account | feedback  |  submit data
+
+2 types k forms hote h angular me
+-
+
+1. Reactive Form : it control data in component.ts file only
+
+2. Template Driven Form : control and handle data in component.html file
+-
+
+Forms Data Flow Works
+	Form 
+	.ts file
+	Service
+	Server
+---------------------
+
+Angular Template Driven Form
+jb hme bsic form bnana hota h tb use krte h
+simple, easy to use
+
+app.module.ts
+	import {FormsModule} from '@agular/forms';
+
+	imports me
+	,
+	FormsModule
+	],
+-
+
+a.c.html
+name zroor dena hota h 
+	<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+		<input type="text" name="email" ngModel> <br>
+		<input type="password" name="password" ngModel> <br>
+		<button type="submit">Login
+	</form>
+-
+
+a.c.ts
+	class k bad
+	
+	onSubmit(data){
+		log(data)
+	}
+------------------
+
+Add Bootstrap in Angular Form
+
+terminal pr
+	ng add @ng-bootstrap/schematics
+-
+
+a.c.html
+	<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+	   <input class="form-control" type="text" name="email" ngModel> <br>
+	   <input class="form-control" type="password" name="password" ngModel> <br>
+	   <button type="submit" class="btn btn-primary">Login
+	</form>
+
+ab ng serve chala do firse
+
+ya fir bootstrap pr ja k form copy paste bhi kr skte ho
+----------------------------------------------------------
+
+Angular Reactive Form Validation
+
+app.module.ts
+	import {ReactiveFormsModule} from '@agular/forms';
+
+	imports me
+	,
+	ReactiveFormsModule
+	],
+-
+
+a.c.html
+bootstrap pr jake form copy paste krdo
+
+<form [formGroup]="loginForm">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" formControlName="email">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control"  formControlName="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+-
+
+a.c.ts
+	import {FormControl,FormGroup, Validators} '@angular/forms'
+
+class k bad
+	loginForm= new FormGroup({
+		email:new FormControl('',Validators.required),
+		password:new FormControl('')
+	})
+isse confirm ho jayga k apko email likhana hi h, compulsary h
+-
+
+a.c.css
+	input.ng-invalid{
+		border-left: 5px solid red
+	}
+	input.ng-valid{
+		border-left: 5px solid green
+	}
+-
+
+agr show bhi karana h valid h ya nhi
+
+a.c.ts
+	get email() { 
+		return this.loginForm.get('email')
+	}
+-
+
+a.c.html
+  <span *ngIf="email.invalid && email.touched"> Email field is required </span>
+----------------------------------------------
+
+Add Validation in Angular Form
+
+app.module.ts
+import {FromsModule} from '@angular/forms';
+
+	imports
+	,
+	FormsModule
+-
+
+a.c.html
+bootstrap se forms le aao
+
+<div class"col-sm-6">
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" required class="form-control" name="useremail" ngModel
+	 #email="ngModel" aria-describedby="emailHelp">
+     
+   <span *ngIf="email.invalid && email.touched"
+	class="error"> Email field can not be empty</span>
+  </div>
+  
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" ngModel
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+-
+
+a.c.ts
+
+class k bad
+	onSubmit(data){
+		log(data)
+	}
+-
+
+a.c.css
+	input.ng-valid{
+		border-left: 5px solid green
+	}
+	input.ng-invalid{
+		border-left: 5px solid red
+	}
+	.error{
+		color:red
+	}
+----------------------------------------------------------------
+
+Prefilled Angular Forms
+
+app.module.ts
+import {FromsModule} from '@angular/forms';
+
+	imports
+	,
+	FormsModule
+-
+
+a.c.html
+ <form #userForm="ngForm">
+   <input type="text" name="email" [ngModel]="userData.eamil"> <br>
+   <input type="password" name="password" [ngModel]="userData.eamil"><br>
+   <input type="text" name="address" [ngModel]="userData.eamil"> <br>
+   <input type="text" name="mobile" [ngModel]="userData.eamil"> <br>
+   <button type=""submit"> Save </button>		
+ </form>
+
+-
+
+a.c.ts
+class k bad
+	userData={
+		email:"test@email.com",
+		password:"123",
+		address:"bhopal",
+		mobile:"12345679"
+	}
+
+ab isko show karane k lye input filed me bind krna pdega
+----------------------------------------------------------
+
+Angular Reactive Forms
+Jb complx example banane hote h, zada validaton lgani h
+
+Handling .ts file me hoti h
+-
+
+app.module.ts
+	import {ReactiveFormsModule} from '@angular/forms'
+
+	imports me dal do
+	,
+	ReactiveFormsModule,
+-
+
+a.c.html
+
+	<form [formGroup]="loginForm" (ngSubmit)="collectData()">
+	  <input type="text" name="username" formControlName="username">
+	<br>
+	  <input type="password" name="password" formControlName="password">
+	  <button type="submit"> Login </button>
+	</form>
+-
+
+a.c.ts
+	import{FormControl,FormGroup} from '@angular/forms'
+
+class k bad
+	loginForm= new FormGroup({
+		username:new FormControl('bilal'),
+		password:new FormControl('123')
+	})
+	
+	collectData(){
+		log(this.loginForm.value)
+	}
+----------------------------------------------------------------------
+
+Video finish
+
+5:10:05
+
+=======================================================================
+
+Todo list in Angular
+
+a.c.html
+	<input type="text" placeholder="Enter New Task" #task />
+	<br>
+	<button (click)="addTask(task.value)"> Add Task
+-
+
+a.c.ts
+class k bad
+	list:any[]=[];
+
+	addTask(item:string){
+		log(item)
+		this.list.push({id:this.list.length,name:item})
+		log(this.list)
+	}
+-
+
+a.c.html
+	<ul *ngFor="let item of list">
+		<li>{{item.name}} 
+		  <button (click)="removeTask(item.id)">Remove</button>
+		</li>
+	</ul>
+-
+
+a.c.ts
+	fn k bad
+	removeTask(id:number){
+		log(id)
+		this.list=this.list.filter(item=>this.id!==id)
+	}
+----------------------------------------------------
+
